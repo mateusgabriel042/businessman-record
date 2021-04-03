@@ -11,4 +11,11 @@ class Businessman extends Model {
     protected $table = 'businessmans';
     protected $fillable = ['id', 'full_name', 'cell_phone', 'registered_in', 'id_state', 'state', 'uf_state', 'id_city', 'city', 'id_business_dad'];
 
+    public function subBusinessmans(){
+        return $this->hasMany(Businessman::class, 'id_business_dad','id');
+    }
+
+    public function allSubBusinessmans(){
+        return $this->subBusinessmans()->with('allSubBusinessmans');
+    }
 }

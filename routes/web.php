@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BusinessmansController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('home');
-});
+});*/
+
+Route::get('{any}', function(){
+	return view('home');
+})->where('any', '.*');

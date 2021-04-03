@@ -16,7 +16,10 @@ class BusinessmansTableSeeder extends Seeder {
             'full_name'       => 'Fulano de Tal',
             'cell_phone'      => '(49) 98541-4569',
             'registered_in'   => date("Y-m-d H:i:s"),
-            'state'			  => 'SC',
+            'id_state'        => 1,
+            'state'           => 'Santa Catarina',
+            'uf_state'		  => 'SC',
+            'id_city'         => 1,
             'city'			  => 'Chapecó',
             'id_business_dad' => null            
         ]);
@@ -26,7 +29,10 @@ class BusinessmansTableSeeder extends Seeder {
             'full_name'       => 'Beltrano Tomé',
             'cell_phone'      => '(48) 99876-4239',
             'registered_in'   => date("Y-m-d H:i:s"),
-            'state'			  => 'SC',
+            'id_state'        => 1,
+            'state'			  => 'Santa Catarina',
+            'uf_state'        => 'SC',
+            'id_city'         => 1,
             'city'			  => 'Itajaí',
             'id_business_dad' => 1
         ]);
@@ -36,7 +42,10 @@ class BusinessmansTableSeeder extends Seeder {
             'full_name'       => 'Pedro Pederneiras',
             'cell_phone'      => '(21) 98541-4123',
             'registered_in'   => date("Y-m-d H:i:s"),
-            'state'			  => 'RJ',
+            'id_state'        => 1,
+            'state'           => 'Rio de Janeiro',
+            'uf_state'		  => 'RJ',
+            'id_city'         => 1,
             'city'			  => 'Niterói',
             'id_business_dad' => 1
         ]);
@@ -46,7 +55,10 @@ class BusinessmansTableSeeder extends Seeder {
             'full_name'       => 'José das Dores',
             'cell_phone'      => '(11) 98221-1129 ',
             'registered_in'   => date("Y-m-d H:i:s"),
-            'state'			  => 'SP',
+            'id_state'        => 1,
+            'state'           => 'São Paulo',
+            'uf_state'		  => 'SP',
+            'id_city'         => 1,
             'city'			  => 'Osasco',
             'id_business_dad' => 3
         ]);
@@ -56,7 +68,10 @@ class BusinessmansTableSeeder extends Seeder {
             'full_name'       => 'Zézinho dos Codes',
             'cell_phone'      => '(91) 98541-4529',
             'registered_in'   => date("Y-m-d H:i:s"),
-            'state'			  => 'PA',
+            'id_state'        => 1,
+            'state'           => 'Pará',
+            'uf_state'			  => 'PA',
+            'id_city'         => 1,
             'city'			  => 'Belem',
             'id_business_dad' => 1
         ]);
@@ -66,7 +81,10 @@ class BusinessmansTableSeeder extends Seeder {
             'full_name'       => 'Maria Recursiva',
             'cell_phone'      => '(47) 96812-8765',
             'registered_in'   => date("Y-m-d H:i:s"),
-            'state'			  => 'SC',
+            'id_state'        => 1,
+            'state'           => 'Santa Catarina',
+            'uf_state'		  => 'SC',
+            'id_city'         => 1,
             'city'			  => 'Blumenau',
             'id_business_dad' => 4
         ]);

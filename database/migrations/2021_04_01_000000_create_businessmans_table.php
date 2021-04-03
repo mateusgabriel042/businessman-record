@@ -11,7 +11,10 @@ class CreateBusinessmansTable extends Migration {
             $table->string('full_name', 200); //existem pessoas com o nome muito grande
             $table->string('cell_phone', 15)->unique();
             $table->timestamp('registered_in');
-            $table->char('state', 2);
+            $table->integer('id_state');
+            $table->string('state', 50);
+            $table->char('uf_state', 2);
+            $table->integer('id_city');
             $table->string('city', 100);
             $table->unsignedBigInteger('id_business_dad')->nullable();
             $table->foreign('id_business_dad')->references('id')->on('businessmans');

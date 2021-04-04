@@ -107,8 +107,8 @@
 	        },
 
 	        async changeCity(event){	            
-	                this.businessman.id_city = event.target.value;
-	        		this.businessman.city = this.cities.find(element => element.id == event.target.value).nome;
+                this.businessman.id_city = event.target.value;
+        		this.businessman.city = this.cities.find(element => element.id == event.target.value).nome;
 	        },
 
 		    async getBusinessDad(){

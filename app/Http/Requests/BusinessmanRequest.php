@@ -36,8 +36,6 @@ class BusinessmanRequest extends FormRequest{
             'city.required' => 'O campo Cidade é obrigatório!',
             'city.min' => 'O campo Cidade deve ter no mínimo 3 caracteres!',
             'city.max' => 'O campo Cidade deve ter no maximo 50 caracteres!',
-
-            
         ];
     }
 }

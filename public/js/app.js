@@ -1867,6 +1867,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -1892,7 +1894,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -1966,10 +1967,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Tem certeza que deseja excluir o registro?")) {
         this.axios["delete"]("/testes/businessman-record/public/api/businessman/".concat(id)).then(function (response) {
+          if (response.data.error) alert(response.data.error);
+
           _this2.getBusinessmans();
-        })["catch"](function (error) {
-          console.log(error);
-        });
+        })["catch"](function (error) {});
       }
     },
     hasBusinessDad: function hasBusinessDad(item) {
@@ -2034,9 +2035,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2052,7 +2050,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       states: [],
       cities: [],
-      business_dad: []
+      business_dad: [],
+      allerrors: []
     };
   },
   mounted: function mounted() {
@@ -2074,7 +2073,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     name: "list"
                   });
                 })["catch"](function (error) {
-                  console.log(error);
+                  _this.allerrors = error.response.data.errors;
                 });
 
               case 2:
@@ -2095,7 +2094,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return _this2.axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(function (response) {
-                  _this2.states = response.data;
+                  _this2.states = response.data.sort(function (a, b) {
+                    return a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0;
+                  });
+                  console.log();
                 })["catch"](function (error) {
                   console.log(error);
                   _this2.states = [];
@@ -2124,18 +2126,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this3.businessman.uf_state = _this3.states.find(function (element) {
                   return element.id == event.target.value;
                 }).sigla;
-                console.log(_this3.businessman.id_state);
-                console.log(_this3.businessman.state);
-                console.log(_this3.businessman.uf_state);
-                _context3.next = 8;
+                _context3.next = 5;
                 return _this3.axios.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados/".concat(event.target.value, "/municipios")).then(function (response) {
-                  _this3.cities = response.data;
+                  _this3.cities = response.data.sort(function (a, b) {
+                    return a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0;
+                  });
                 })["catch"](function (error) {
                   console.log(error);
                   _this3.cities = [];
                 });
 
-              case 8:
+              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -2155,10 +2156,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this4.businessman.city = _this4.cities.find(function (element) {
                   return element.id == event.target.value;
                 }).nome;
-                console.log(_this4.businessman.id_city);
-                console.log(_this4.businessman.city);
 
-              case 4:
+              case 2:
               case "end":
                 return _context4.stop();
             }
@@ -2221,8 +2220,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2262,7 +2259,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var html = '<ul>';
 
       (function printRede(list, index) {
-        html += "<li>".concat(list.full_name);
+        html += "<li>- ".concat(list.full_name);
 
         if (list.all_sub_businessmans) {
           html += "<ul>";
@@ -2294,12 +2291,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _views_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/App.vue */ "./resources/js/views/App.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _routers_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routers/router */ "./resources/js/routers/router.js");
+/* harmony import */ var v_mask__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! v-mask */ "./node_modules/v-mask/dist/v-mask.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -2309,9 +2307,11 @@ window.Vue = vue__WEBPACK_IMPORTED_MODULE_0__.default;
 
 
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_5__.default);
+
+Vue.use(v_mask__WEBPACK_IMPORTED_MODULE_5__.default);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_6__.default);
 Vue.use((vue_axios__WEBPACK_IMPORTED_MODULE_2___default()), (axios__WEBPACK_IMPORTED_MODULE_3___default()));
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__.default({
   mode: 'history',
   base: '/testes/businessman-record/public/',
   routes: _routers_router__WEBPACK_IMPORTED_MODULE_4__.default
@@ -42002,6 +42002,530 @@ try {
 
 /***/ }),
 
+/***/ "./node_modules/v-mask/dist/v-mask.esm.js":
+/*!************************************************!*\
+  !*** ./node_modules/v-mask/dist/v-mask.esm.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "VueMaskDirective": () => (/* binding */ directive),
+/* harmony export */   "VueMaskFilter": () => (/* binding */ filter),
+/* harmony export */   "VueMaskPlugin": () => (/* binding */ plugin)
+/* harmony export */ });
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+var placeholderChar = '_';
+var strFunction = 'function';
+
+var emptyArray = [];
+function convertMaskToPlaceholder() {
+  var mask = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : emptyArray;
+  var placeholderChar$1 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : placeholderChar;
+
+  if (!isArray(mask)) {
+    throw new Error('Text-mask:convertMaskToPlaceholder; The mask property must be an array.');
+  }
+
+  if (mask.indexOf(placeholderChar$1) !== -1) {
+    throw new Error('Placeholder character must not be used as part of the mask. Please specify a character ' + 'that is not present in your mask as your placeholder character.\n\n' + "The placeholder character that was received is: ".concat(JSON.stringify(placeholderChar$1), "\n\n") + "The mask that was received is: ".concat(JSON.stringify(mask)));
+  }
+
+  return mask.map(function (char) {
+    return char instanceof RegExp ? placeholderChar$1 : char;
+  }).join('');
+}
+function isArray(value) {
+  return Array.isArray && Array.isArray(value) || value instanceof Array;
+}
+var strCaretTrap = '[]';
+function processCaretTraps(mask) {
+  var indexes = [];
+  var indexOfCaretTrap;
+
+  while (indexOfCaretTrap = mask.indexOf(strCaretTrap), indexOfCaretTrap !== -1) {
+    indexes.push(indexOfCaretTrap);
+    mask.splice(indexOfCaretTrap, 1);
+  }
+
+  return {
+    maskWithoutCaretTraps: mask,
+    indexes: indexes
+  };
+}
+
+var emptyArray$1 = [];
+var emptyString = '';
+function conformToMask() {
+  var rawValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : emptyString;
+  var mask = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : emptyArray$1;
+  var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+  if (!isArray(mask)) {
+    if (_typeof(mask) === strFunction) {
+      mask = mask(rawValue, config);
+      mask = processCaretTraps(mask).maskWithoutCaretTraps;
+    } else {
+      throw new Error('Text-mask:conformToMask; The mask property must be an array.');
+    }
+  }
+
+  var _config$guide = config.guide,
+      guide = _config$guide === void 0 ? true : _config$guide,
+      _config$previousConfo = config.previousConformedValue,
+      previousConformedValue = _config$previousConfo === void 0 ? emptyString : _config$previousConfo,
+      _config$placeholderCh = config.placeholderChar,
+      placeholderChar$1 = _config$placeholderCh === void 0 ? placeholderChar : _config$placeholderCh,
+      _config$placeholder = config.placeholder,
+      placeholder = _config$placeholder === void 0 ? convertMaskToPlaceholder(mask, placeholderChar$1) : _config$placeholder,
+      currentCaretPosition = config.currentCaretPosition,
+      keepCharPositions = config.keepCharPositions;
+  var suppressGuide = guide === false && previousConformedValue !== undefined;
+  var rawValueLength = rawValue.length;
+  var previousConformedValueLength = previousConformedValue.length;
+  var placeholderLength = placeholder.length;
+  var maskLength = mask.length;
+  var editDistance = rawValueLength - previousConformedValueLength;
+  var isAddition = editDistance > 0;
+  var indexOfFirstChange = currentCaretPosition + (isAddition ? -editDistance : 0);
+  var indexOfLastChange = indexOfFirstChange + Math.abs(editDistance);
+
+  if (keepCharPositions === true && !isAddition) {
+    var compensatingPlaceholderChars = emptyString;
+
+    for (var i = indexOfFirstChange; i < indexOfLastChange; i++) {
+      if (placeholder[i] === placeholderChar$1) {
+        compensatingPlaceholderChars += placeholderChar$1;
+      }
+    }
+
+    rawValue = rawValue.slice(0, indexOfFirstChange) + compensatingPlaceholderChars + rawValue.slice(indexOfFirstChange, rawValueLength);
+  }
+
+  var rawValueArr = rawValue.split(emptyString).map(function (char, i) {
+    return {
+      char: char,
+      isNew: i >= indexOfFirstChange && i < indexOfLastChange
+    };
+  });
+
+  for (var _i = rawValueLength - 1; _i >= 0; _i--) {
+    var char = rawValueArr[_i].char;
+
+    if (char !== placeholderChar$1) {
+      var shouldOffset = _i >= indexOfFirstChange && previousConformedValueLength === maskLength;
+
+      if (char === placeholder[shouldOffset ? _i - editDistance : _i]) {
+        rawValueArr.splice(_i, 1);
+      }
+    }
+  }
+
+  var conformedValue = emptyString;
+  var someCharsRejected = false;
+
+  placeholderLoop: for (var _i2 = 0; _i2 < placeholderLength; _i2++) {
+    var charInPlaceholder = placeholder[_i2];
+
+    if (charInPlaceholder === placeholderChar$1) {
+      if (rawValueArr.length > 0) {
+        while (rawValueArr.length > 0) {
+          var _rawValueArr$shift = rawValueArr.shift(),
+              rawValueChar = _rawValueArr$shift.char,
+              isNew = _rawValueArr$shift.isNew;
+
+          if (rawValueChar === placeholderChar$1 && suppressGuide !== true) {
+            conformedValue += placeholderChar$1;
+            continue placeholderLoop;
+          } else if (mask[_i2].test(rawValueChar)) {
+            if (keepCharPositions !== true || isNew === false || previousConformedValue === emptyString || guide === false || !isAddition) {
+              conformedValue += rawValueChar;
+            } else {
+              var rawValueArrLength = rawValueArr.length;
+              var indexOfNextAvailablePlaceholderChar = null;
+
+              for (var _i3 = 0; _i3 < rawValueArrLength; _i3++) {
+                var charData = rawValueArr[_i3];
+
+                if (charData.char !== placeholderChar$1 && charData.isNew === false) {
+                  break;
+                }
+
+                if (charData.char === placeholderChar$1) {
+                  indexOfNextAvailablePlaceholderChar = _i3;
+                  break;
+                }
+              }
+
+              if (indexOfNextAvailablePlaceholderChar !== null) {
+                conformedValue += rawValueChar;
+                rawValueArr.splice(indexOfNextAvailablePlaceholderChar, 1);
+              } else {
+                _i2--;
+              }
+            }
+
+            continue placeholderLoop;
+          } else {
+            someCharsRejected = true;
+          }
+        }
+      }
+
+      if (suppressGuide === false) {
+        conformedValue += placeholder.substr(_i2, placeholderLength);
+      }
+
+      break;
+    } else {
+      conformedValue += charInPlaceholder;
+    }
+  }
+
+  if (suppressGuide && isAddition === false) {
+    var indexOfLastFilledPlaceholderChar = null;
+
+    for (var _i4 = 0; _i4 < conformedValue.length; _i4++) {
+      if (placeholder[_i4] === placeholderChar$1) {
+        indexOfLastFilledPlaceholderChar = _i4;
+      }
+    }
+
+    if (indexOfLastFilledPlaceholderChar !== null) {
+      conformedValue = conformedValue.substr(0, indexOfLastFilledPlaceholderChar + 1);
+    } else {
+      conformedValue = emptyString;
+    }
+  }
+
+  return {
+    conformedValue: conformedValue,
+    meta: {
+      someCharsRejected: someCharsRejected
+    }
+  };
+}
+
+var NEXT_CHAR_OPTIONAL = {
+  __nextCharOptional__: true
+};
+var defaultMaskReplacers = {
+  '#': /\d/,
+  A: /[a-z]/i,
+  N: /[a-z0-9]/i,
+  '?': NEXT_CHAR_OPTIONAL,
+  X: /./
+};
+
+var stringToRegexp = function stringToRegexp(str) {
+  var lastSlash = str.lastIndexOf('/');
+  return new RegExp(str.slice(1, lastSlash), str.slice(lastSlash + 1));
+};
+
+var makeRegexpOptional = function makeRegexpOptional(charRegexp) {
+  return stringToRegexp(charRegexp.toString().replace(/.(\/)[gmiyus]{0,6}$/, function (match) {
+    return match.replace('/', '?/');
+  }));
+};
+
+var escapeIfNeeded = function escapeIfNeeded(char) {
+  return '[\\^$.|?*+()'.indexOf(char) > -1 ? "\\".concat(char) : char;
+};
+
+var charRegexp = function charRegexp(char) {
+  return new RegExp("/[".concat(escapeIfNeeded(char), "]/"));
+};
+
+var isRegexp = function isRegexp(entity) {
+  return entity instanceof RegExp;
+};
+
+var castToRegexp = function castToRegexp(char) {
+  return isRegexp(char) ? char : charRegexp(char);
+};
+
+function maskToRegExpMask(mask) {
+  var maskReplacers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultMaskReplacers;
+  return mask.map(function (char, index, array) {
+    var maskChar = maskReplacers[char] || char;
+    var previousChar = array[index - 1];
+    var previousMaskChar = maskReplacers[previousChar] || previousChar;
+
+    if (maskChar === NEXT_CHAR_OPTIONAL) {
+      return null;
+    }
+
+    if (previousMaskChar === NEXT_CHAR_OPTIONAL) {
+      return makeRegexpOptional(castToRegexp(maskChar));
+    }
+
+    return maskChar;
+  }).filter(Boolean);
+}
+
+function stringMaskToRegExpMask(stringMask) {
+  var maskReplacers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultMaskReplacers;
+  return maskToRegExpMask(stringMask.split(''), maskReplacers);
+}
+function arrayMaskToRegExpMask(arrayMask) {
+  var maskReplacers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultMaskReplacers;
+  var flattenedMask = arrayMask.map(function (part) {
+    if (part instanceof RegExp) {
+      return part;
+    }
+
+    if (typeof part === 'string') {
+      return part.split('');
+    }
+
+    return null;
+  }).filter(Boolean).reduce(function (mask, part) {
+    return mask.concat(part);
+  }, []);
+  return maskToRegExpMask(flattenedMask, maskReplacers);
+}
+
+var trigger = function trigger(el, type) {
+  var e = document.createEvent('HTMLEvents');
+  e.initEvent(type, true, true);
+  el.dispatchEvent(e);
+};
+var queryInputElementInside = function queryInputElementInside(el) {
+  return el instanceof HTMLInputElement ? el : el.querySelector('input') || el;
+};
+var isFunction = function isFunction(val) {
+  return typeof val === 'function';
+};
+var isString = function isString(val) {
+  return typeof val === 'string';
+};
+var isRegexp$1 = function isRegexp(val) {
+  return val instanceof RegExp;
+};
+
+function createOptions() {
+  var elementOptions = new Map();
+  var defaultOptions = {
+    previousValue: '',
+    mask: []
+  };
+
+  function get(el) {
+    return elementOptions.get(el) || _objectSpread2({}, defaultOptions);
+  }
+
+  function partiallyUpdate(el, newOptions) {
+    elementOptions.set(el, _objectSpread2(_objectSpread2({}, get(el)), newOptions));
+  }
+
+  function remove(el) {
+    elementOptions.delete(el);
+  }
+
+  return {
+    partiallyUpdate: partiallyUpdate,
+    remove: remove,
+    get: get
+  };
+}
+
+var options = createOptions();
+
+function triggerInputUpdate(el) {
+  trigger(el, 'input');
+}
+
+function updateValue(el) {
+  var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var value = el.value;
+
+  var _options$get = options.get(el),
+      previousValue = _options$get.previousValue,
+      mask = _options$get.mask;
+
+  var isValueChanged = value !== previousValue;
+  var isLengthIncreased = value.length > previousValue.length;
+  var isUpdateNeeded = value && isValueChanged && isLengthIncreased;
+
+  if ((force || isUpdateNeeded) && mask) {
+    var _conformToMask = conformToMask(value, mask, {
+      guide: false
+    }),
+        conformedValue = _conformToMask.conformedValue;
+
+    el.value = conformedValue;
+    triggerInputUpdate(el);
+  }
+
+  options.partiallyUpdate(el, {
+    previousValue: value
+  });
+}
+
+function updateMask(el, inputMask, maskReplacers) {
+  var mask;
+
+  if (Array.isArray(inputMask)) {
+    mask = arrayMaskToRegExpMask(inputMask, maskReplacers);
+  } else if (isFunction(inputMask)) {
+    mask = inputMask;
+  } else if (isString(inputMask) && inputMask.length > 0) {
+    mask = stringMaskToRegExpMask(inputMask, maskReplacers);
+  } else {
+    mask = inputMask;
+  }
+
+  options.partiallyUpdate(el, {
+    mask: mask
+  });
+}
+
+function extendMaskReplacers(maskReplacers) {
+  var baseMaskReplacers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultMaskReplacers;
+
+  if (maskReplacers === null || Array.isArray(maskReplacers) || _typeof(maskReplacers) !== 'object') {
+    return baseMaskReplacers;
+  }
+
+  return Object.keys(maskReplacers).reduce(function (extendedMaskReplacers, key) {
+    var value = maskReplacers[key];
+
+    if (value !== null && !(value instanceof RegExp)) {
+      return extendedMaskReplacers;
+    }
+
+    return _objectSpread2(_objectSpread2({}, extendedMaskReplacers), {}, _defineProperty({}, key, value));
+  }, baseMaskReplacers);
+}
+
+function maskToString(mask) {
+  var maskArray = Array.isArray(mask) ? mask : [mask];
+  var filteredMaskArray = maskArray.filter(function (part) {
+    return isString(part) || isRegexp$1(part);
+  });
+  return filteredMaskArray.toString();
+}
+
+function createDirective() {
+  var directiveOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var instanceMaskReplacers = extendMaskReplacers(directiveOptions && directiveOptions.placeholders);
+  return {
+    bind: function bind(el, _ref) {
+      var value = _ref.value;
+      el = queryInputElementInside(el);
+      updateMask(el, value, instanceMaskReplacers);
+      updateValue(el);
+    },
+    componentUpdated: function componentUpdated(el, _ref2) {
+      var value = _ref2.value,
+          oldValue = _ref2.oldValue;
+      el = queryInputElementInside(el);
+      var isMaskChanged = isFunction(value) || maskToString(oldValue) !== maskToString(value);
+
+      if (isMaskChanged) {
+        updateMask(el, value, instanceMaskReplacers);
+      }
+
+      updateValue(el, isMaskChanged);
+    },
+    unbind: function unbind(el) {
+      el = queryInputElementInside(el);
+      options.remove(el);
+    }
+  };
+}
+var directive = createDirective();
+
+var filter = (function (value, stringMask) {
+  var mask = stringMaskToRegExpMask(stringMask);
+  if (!isString(value) && !Number.isFinite(value)) return value;
+
+  var _conformToMask = conformToMask("".concat(value), mask, {
+    guide: false
+  }),
+      conformedValue = _conformToMask.conformedValue;
+
+  return conformedValue;
+});
+
+var plugin = (function (Vue) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  Vue.directive('mask', createDirective(options));
+  Vue.filter('VMask', filter);
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (plugin);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-axios/dist/vue-axios.es5.js":
 /*!******************************************************!*\
   !*** ./node_modules/vue-axios/dist/vue-axios.es5.js ***!
@@ -42319,30 +42843,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("router-link", { attrs: { to: { name: "register" } } }, [
-        _vm._v("Cadastrar")
-      ]),
-      _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "list" } } }, [
-        _vm._v("Listar")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "container" },
-        [
-          _c("p", [_vm._v("Cadastro de Empresários")]),
-          _vm._v(" "),
-          _c("router-view")
-        ],
-        1
-      )
-    ],
-    1
-  )
+  return _c("div", { staticClass: "area-app" }, [
+    _c(
+      "div",
+      { staticClass: "container" },
+      [
+        _c("h1", [_vm._v("Cadastro de Empresários")]),
+        _vm._v(" "),
+        _c(
+          "nav",
+          [
+            _c("router-link", { attrs: { to: { name: "register" } } }, [
+              _vm._v("Cadastrar")
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: { name: "list" } } }, [
+              _vm._v("Listar")
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("router-view", { staticClass: "main-area" })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42368,7 +42894,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", [_vm._v("Listagem dos empresários")]),
+    _c("label", [_vm._v("Empresários cadastrados")]),
     _vm._v(" "),
     _c("table", { attrs: { border: "1" } }, [
       _vm._m(0),
@@ -42397,7 +42923,7 @@ var render = function() {
                   {
                     attrs: { to: { name: "viewRede", params: { id: item.id } } }
                   },
-                  [_vm._v("Rede")]
+                  [_vm._v("Ver rede")]
                 )
               ],
               1
@@ -42407,6 +42933,7 @@ var render = function() {
               _c(
                 "button",
                 {
+                  staticClass: "delete",
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
@@ -42414,7 +42941,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Delete")]
+                [_vm._v("Excluir")]
               )
             ])
           ])
@@ -42469,7 +42996,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", [_vm._v("Registro dos empresários")]),
+    _c("label", [_vm._v("Formulário de cadastro dos empresários")]),
     _vm._v(" "),
     _c(
       "form",
@@ -42482,146 +43009,117 @@ var render = function() {
         }
       },
       [
-        _c("div", [
-          _c("label", [_vm._v("Nome completo:")]),
-          _vm._v(" "),
-          _c("input", {
+        _c("label", [
+          _vm._v("Nome completo: "),
+          _vm.allerrors.full_name
+            ? _c("span", [_vm._v(_vm._s(_vm.allerrors.full_name[0]))])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.businessman.full_name,
+              expression: "businessman.full_name"
+            }
+          ],
+          attrs: { type: "text", name: "full_name" },
+          domProps: { value: _vm.businessman.full_name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.businessman, "full_name", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", [
+          _vm._v("Celular: "),
+          _vm.allerrors.cell_phone
+            ? _c("span", [_vm._v(_vm._s(_vm.allerrors.cell_phone[0]))])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "mask",
+              rawName: "v-mask",
+              value: "(##) #####-####",
+              expression: "'(##) #####-####'"
+            },
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.businessman.cell_phone,
+              expression: "businessman.cell_phone"
+            }
+          ],
+          attrs: { type: "text", name: "cell_phone" },
+          domProps: { value: _vm.businessman.cell_phone },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.businessman, "cell_phone", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", [
+          _vm._v("Estado: "),
+          _vm.allerrors.uf_state
+            ? _c("span", [_vm._v(_vm._s(_vm.allerrors.uf_state[0]))])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            attrs: { name: "state" },
+            on: {
+              change: function($event) {
+                return _vm.changeState($event)
+              }
+            }
+          },
+          _vm._l(_vm.states, function(item) {
+            return _c(
+              "option",
+              { key: item.id, domProps: { value: item.id } },
+              [_vm._v(_vm._s(item.nome))]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c("label", [
+          _vm._v("Cidade: "),
+          _vm.allerrors.city
+            ? _c("span", [_vm._v(_vm._s(_vm.allerrors.city[0]))])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.businessman.full_name,
-                expression: "businessman.full_name"
+                value: _vm.businessman.id_city,
+                expression: "businessman.id_city"
               }
             ],
-            attrs: { type: "text", name: "full_name" },
-            domProps: { value: _vm.businessman.full_name },
+            attrs: { name: "city" },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.businessman, "full_name", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("label", [_vm._v("Celular:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.businessman.cell_phone,
-                expression: "businessman.cell_phone"
-              }
-            ],
-            attrs: { type: "text", name: "cell_phone" },
-            domProps: { value: _vm.businessman.cell_phone },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.businessman, "cell_phone", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("label", [_vm._v("Estado:")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              attrs: { name: "state" },
-              on: {
-                change: function($event) {
-                  return _vm.changeState($event)
-                }
-              }
-            },
-            _vm._l(_vm.states, function(item) {
-              return _c(
-                "option",
-                { key: item.id, domProps: { value: item.id } },
-                [_vm._v(_vm._s(item.nome))]
-              )
-            }),
-            0
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("label", [_vm._v("Cidade:")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.businessman.id_city,
-                  expression: "businessman.id_city"
-                }
-              ],
-              attrs: { name: "city" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.businessman,
-                      "id_city",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  },
-                  function($event) {
-                    return _vm.changeCity($event)
-                  }
-                ]
-              }
-            },
-            _vm._l(_vm.cities, function(item) {
-              return _c(
-                "option",
-                { key: item.id, domProps: { value: item.id } },
-                [_vm._v(_vm._s(item.nome))]
-              )
-            }),
-            0
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("label", [_vm._v("Pai empresarial:")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.businessman.id_business_dad,
-                  expression: "businessman.id_business_dad"
-                }
-              ],
-              attrs: { name: "id_business_dad" },
-              on: {
-                change: function($event) {
+              change: [
+                function($event) {
                   var $$selectedVal = Array.prototype.filter
                     .call($event.target.options, function(o) {
                       return o.selected
@@ -42632,44 +43130,82 @@ var render = function() {
                     })
                   _vm.$set(
                     _vm.businessman,
-                    "id_business_dad",
+                    "id_city",
                     $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                   )
+                },
+                function($event) {
+                  return _vm.changeCity($event)
                 }
-              }
-            },
-            [
-              _c("option", { attrs: { selected: "selected" } }, [
-                _vm._v("Selecionar")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.business_dad, function(item) {
-                return _c(
-                  "option",
-                  { key: item.id, domProps: { value: item.id } },
-                  [_vm._v(_vm._s(item.full_name))]
-                )
-              })
-            ],
-            2
-          )
-        ]),
+              ]
+            }
+          },
+          _vm._l(_vm.cities, function(item) {
+            return _c(
+              "option",
+              { key: item.id, domProps: { value: item.id } },
+              [_vm._v(_vm._s(item.nome))]
+            )
+          }),
+          0
+        ),
         _vm._v(" "),
-        _vm._m(0)
+        _c("label", [_vm._v("Pai empresarial:")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.businessman.id_business_dad,
+                expression: "businessman.id_business_dad"
+              }
+            ],
+            attrs: { name: "id_business_dad" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.businessman,
+                  "id_business_dad",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { selected: "selected" } }, [
+              _vm._v("Selecionar")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.business_dad, function(item) {
+              return _c(
+                "option",
+                { key: item.id, domProps: { value: item.id } },
+                [_vm._v(_vm._s(item.full_name))]
+              )
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "submit", value: "Cadastrar empresário" }
+        })
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", { attrs: { type: "submit", value: "Cadastrar empresário" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42693,8 +43229,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", [
-      _vm._v("Rede do empresáario: " + _vm._s(_vm.businessman.full_name))
+    _c("label", [
+      _vm._v("Rede do empresário: " + _vm._s(_vm.businessman.full_name))
     ]),
     _vm._v(" "),
     _c("div", { domProps: { innerHTML: _vm._s(_vm.listRede) } })

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Businessman;
+use App\Http\Requests\BusinessmanRequest;
 
 class BusinessmansController extends Controller {
     public function index(){
@@ -15,9 +16,18 @@ class BusinessmansController extends Controller {
     	return response()->json($businessmans);
     }
 
-    public function store(Request $request) {
+    public function store(BusinessmanRequest $request) {
+
+        /*if ($request->vaildate()->fails())
+            return response()->json(['error' => 'teste'], 401);
+        
+        if(!$request->validated())
+            return response()
+        */
     	date_default_timezone_set('America/Sao_Paulo');
-    	$dataBusinessman = $request->all();
+
+        $dataBusinessman = $request->all();
+
     	$dataBusinessman['registered_in'] = date("Y-m-d H:i:s");
         $businessman = Businessman::create($dataBusinessman);
 
@@ -28,22 +38,31 @@ class BusinessmansController extends Controller {
     }
 
     public function show($id) {
-        $businessman = Businessman::where('id', $id)->with('allSubBusinessmans')->first();
+        //selecao da rede do empresario
+        try{
+            $businessman = Businessman::where('id', $id)->with('allSubBusinessmans')->firstOrFail();
+        }catch(ModelNotFoundException $e){
+            return response()->json(['error' => 'Empresário não encontrado!'], 404);
+        }
+
         return response()->json($businessman);
     }
 
     public function update(Request $request, Businessman $businessman) {
-        $businessman->fill($request->post())->save();
-        return response()->json([
-            'message'=>'Businessman Updated Successfully!!',
-            'businessman'=>$businessman
-        ]);
+        //no teste não pedia atualização de registro
     }
 
     public function destroy($id) {
-        $businessman = Businessman::find($id)->delete();
+        try{
+            $businessman = Businessman::findOrFail($id)->delete();
+        }catch(ModelNotFoundException $e){
+            return response()->json(['error' => 'Empresário não encontrado!'], 404);
+        }catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['error'=> 'Algo deu errado, você pode está tentando apagar um registro que está relacionado com outro.']);
+        }
+        
         return response()->json([
-            'message'=>'Businessman Deleted Successfully!!'
+            'message'=>'Businessman apagado com sucesso!!'
         ]);
     }
 }

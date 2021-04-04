@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<h2>Listagem dos empresários</h2>
-
+		<label>Empresários cadastrados</label>
 		<table border="1">
 			<thead>
 				<th>Nome completo</th>
@@ -20,8 +19,8 @@
 					<td>{{item.registered_in}}</td>
 					<td v-if="hasBusinessDad(item)">{{item.business_dad.full_name}}</td>
 					<td v-else="hasBusinessDad(item)">-</td>
-					<td><router-link :to="{name:'viewRede', params:{id:item.id}}">Rede</router-link></td>
-					<td><button type="button" @click="deleteBusinessmans(item.id)">Delete</button></td>
+					<td><router-link :to="{name:'viewRede', params:{id:item.id}}">Ver rede</router-link></td>
+					<td><button type="button" @click="deleteBusinessmans(item.id)" class="delete">Excluir</button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -57,9 +56,12 @@
 	        deleteBusinessmans(id){
 	            if(confirm("Tem certeza que deseja excluir o registro?")){
 	                this.axios.delete(`/testes/businessman-record/public/api/businessman/${id}`).then(response=>{
+	                	if(response.data.error)
+	                    	alert(response.data.error);
+	                    
 	                    this.getBusinessmans()
 	                }).catch(error=>{
-	                    console.log(error)
+
 	                })
 	            }
 	        },

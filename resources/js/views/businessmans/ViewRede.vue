@@ -1,9 +1,7 @@
 <template>
 	<div>
-		<h2>Rede do empresáario: {{businessman.full_name}}</h2>
-
-		<div v-html="listRede">
-		</div>
+		<label>Rede do empresário: {{businessman.full_name}}</label>
+		<div v-html="listRede"></div>
 	</div>
 </template>
 
@@ -35,7 +33,7 @@
 	        	let html = '<ul>';
 
 				(function printRede(list, index) {
-				    html += `<li>${list.full_name}`;
+				    html += `<li>- ${list.full_name}`;
 
 				    if(list.all_sub_businessmans) {
 				        html += `<ul>`;

@@ -8,10 +8,12 @@ import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 import routes from './routers/router';
+import VueMask from 'v-mask'
 
-
-Vue.use(VueRouter)
+Vue.use(VueMask);
+Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+
 const router = new VueRouter({
 	mode: 'history',
 	base: '/testes/businessman-record/public/',

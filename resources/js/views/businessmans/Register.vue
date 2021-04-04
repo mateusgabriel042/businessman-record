@@ -2,33 +2,41 @@
 	<div>
 		<label>Formulário de cadastro dos empresários</label>
 		<form @submit.prevent="createBusinessman">
-			<label>Nome completo: <span v-if="allerrors.full_name" >{{allerrors.full_name[0]}}</span></label>
-			<input type="text" name="full_name" v-model="businessman.full_name" />
-			
+			<div>
+				<label>Nome completo: <span v-if="allerrors.full_name" >{{allerrors.full_name[0]}}</span></label>
+				<input type="text" name="full_name" v-model="businessman.full_name" />
+			</div>
 		
-			<label>Celular: <span v-if="allerrors.cell_phone" >{{allerrors.cell_phone[0]}}</span></label>
-			<input type="text" name="cell_phone" v-mask="'(##) #####-####'" v-model="businessman.cell_phone"/>
-			
+			<div>
+				<label>Celular: <span v-if="allerrors.cell_phone" >{{allerrors.cell_phone[0]}}</span></label>
+				<input type="text" name="cell_phone" v-mask="'(##) #####-####'" v-model="businessman.cell_phone"/>
+			</div>
 		
-			<label>Estado: <span v-if="allerrors.uf_state">{{allerrors.uf_state[0]}}</span></label>
-			<select name="state" @change="changeState($event)">
-				<option v-for="item in states" :key="item.id" :value="item.id">{{item.nome}}</option>
-			</select>
-			
+			<div>
+				<label>Estado: <span v-if="allerrors.uf_state">{{allerrors.uf_state[0]}}</span></label>
+				<select name="state" @change="changeState($event)">
+					<option v-for="item in states" :key="item.id" :value="item.id">{{item.nome}}</option>
+				</select>
+			</div>
 		
-			<label>Cidade: <span v-if="allerrors.city">{{allerrors.city[0]}}</span></label>
-			<select name="city" @change="changeCity($event)" v-model="businessman.id_city">
-				<option v-for="item in cities" :key="item.id" :value="item.id">{{item.nome}}</option>
-			</select>
-		
+			<div>
+				<label>Cidade: <span v-if="allerrors.city">{{allerrors.city[0]}}</span></label>
+				<select name="city" @change="changeCity($event)" v-model="businessman.id_city">
+					<option v-for="item in cities" :key="item.id" :value="item.id">{{item.nome}}</option>
+				</select>
+			</div>
+
+			<div>
 			<label>Pai empresarial:</label>
-			<select name="id_business_dad" v-model="businessman.id_business_dad">
-				<option selected="selected">Selecionar</option>
-				<option v-for="item in business_dad" :key="item.id" :value="item.id">{{item.full_name}}</option>
-			</select>
-		
-			<input type="submit" value="Cadastrar empresário"></input>
-			
+				<select name="id_business_dad" v-model="businessman.id_business_dad">
+					<option selected="selected">Selecionar</option>
+					<option v-for="item in business_dad" :key="item.id" :value="item.id">{{item.full_name}}</option>
+				</select>
+			</div>
+
+			<div class="row">
+				<input type="submit" value="Cadastrar empresário"></input>
+			</div>
 		</form>
 	</div>
 </template>

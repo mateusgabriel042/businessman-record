@@ -1,1 +1,63 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap);
+/*-----------------------------------------------------------------------------
+* Imports google fonts
+*------------------------------------------------------------------------------
+*/
 
+/*-----------------------------------------------------------------------------
+* charset utf-8
+*------------------------------------------------------------------------------
+*/
+@charset "utf-8";
+
+/*-----------------------------------------------------------------------------
+* formatacao padrao para todos os elementos 
+*------------------------------------------------------------------------------
+*/
+html, body {margin:0px; padding:0px; width:100%; height:100%;}
+a {text-decoration:none; cursor:pointer;}
+p, h1, h2, h3, h4, h5, h6 {margin:0px; padding:0px;}
+button:focus, select:focus, textarea:focus {outline:none;}
+button {cursor:pointer;}
+input {outline:none;}
+*:not(i) {font-family:"Roboto" !important;}
+
+/*-----------------------------------------------------------------------------
+*formatacao padrao do scrollbar
+*------------------------------------------------------------------------------
+*/
+::-webkit-scrollbar {width:5px;}
+::-webkit-scrollbar-track-piece {background-color:#efefef;}
+::-webkit-scrollbar-thumb {background-color:#222629;}
+
+.area-app {float:left; width:100%; display:flex; justify-content:center; margin-top:70px;}
+.area-app div.container {width:80%;}
+.area-app div.container h1 {float:left; width:100%; text-align:center; margin-bottom:30px;}
+.area-app div.container nav {float:left; width:100%; display:flex;}
+.area-app div.container nav a {padding:10px 20px; background-color:#118ab2; color:#fdfdfe; transition:0.3s;}
+.area-app div.container nav a:hover {background-color:#0a6482; transition:0.3s;}
+.area-app div.container div.main-area {float:left; width:100%; padding:10px; border:1px solid #e8e8e8;}
+.area-app div.container div.main-area > label {float:left; width:100%; color:#999999; margin-bottom:10px;}
+
+form {float:left; width:100%; display:flex; flex-wrap:wrap; justify-content:space-between;}
+form div {width:48%; display:flex; flex-wrap:wrap; margin:5px 10px;}
+form div.row {width:100%; display:flex; flex-wrap:wrap; justify-content:center; margin:5px 0px;} 
+form div label {width:100%; font-size:14px; font-weight:bold; margin-bottom:5px;}
+form div label span {font-size:12px; font-weight:bold; margin-bottom:5px; color:red;}
+form div input:not(input[type="submit"]) {width:100%;  border:1px solid #e8e8e8; padding:5px; border-radius:5px; margin-bottom:5px;}
+form div input[type="submit"] {padding:8px 25px; background-color:#06d6a0; color:#fdfdfe; font-size:13px; border-radius:3px; border:none; margin-top:15px; transition:0.3s;}
+form div input[type="submit"]:hover {background-color:#06a179; transition:0.3s; cursor:pointer;}
+form div select {width:100%; background-color:transparent; border:1px solid #e8e8e8; padding:5px; border-radius:5px; margin-bottom:5px;}
+
+
+table {width:100%; border-collapse:collapse; border:1px solid #073b4c;}
+table thead {background-color:#073b4c; color:#fdfdfe; padding:5px;}
+table thead th {font-size:14px; text-align:left; padding:5px; font-weight:normal;}
+table tbody tr {text-align:left; font-size:14px;}
+table tbody tr:nth-child(even) {background-color:rgba(0,0,0,0.1);}
+table tbody tr td {padding:5px; vertical-align:center;}
+table tbody tr td a {background-color:#118ab2; padding:3px 10px; color:#fdfdfe; font-size:13px; border-radius:3px; margin-left:0 auto;}
+table tbody tr td button.delete {background-color:#ef476f; padding:3px 10px; color:#fdfdfe; font-size:13px; border-radius:3px; border:none;}
+
+ul {float:left; width:100%; list-style:none; margin:0px;}
+ul li {color:#999999;}

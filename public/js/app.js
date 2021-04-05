@@ -2321,7 +2321,7 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_6__.default);
 Vue.use((vue_axios__WEBPACK_IMPORTED_MODULE_2___default()), (axios__WEBPACK_IMPORTED_MODULE_3___default()));
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__.default({
   mode: 'history',
-  base: '/testes/businessman-record/public/',
+  base: '/',
   routes: _routers_router__WEBPACK_IMPORTED_MODULE_4__.default
 });
 var app = new Vue({

@@ -16,7 +16,7 @@ Vue.use(VueAxios, axios);
 
 const router = new VueRouter({
 	mode: 'history',
-	base: '/testes/businessman-record/public/',
+	base: '/',
 	routes: routes
 });
 

@@ -72,7 +72,7 @@
 		methods: {
 
 			async createBusinessman(){
-		        await this.axios.post('/api/businessman',this.businessman).then(response=>{
+		        await this.axios.post('/testes/businessman-record/public/api/businessman',this.businessman).then(response=>{
 		            this.$router.push({name:"list"})
 		        }).catch(error=>{
 		        	this.allerrors = error.response.data.errors;

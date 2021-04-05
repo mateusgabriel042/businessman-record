@@ -1943,7 +1943,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get('/testes/businessman-record/public/api/businessman').then(function (response) {
+                return _this.axios.get('/api/businessman').then(function (response) {
                   _this.businessmans = response.data;
 
                   _this.businessmans.forEach(function (item) {
@@ -1966,7 +1966,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       if (confirm("Tem certeza que deseja excluir o registro?")) {
-        this.axios["delete"]("/testes/businessman-record/public/api/businessman/".concat(id)).then(function (response) {
+        this.axios["delete"]("/api/businessman/".concat(id)).then(function (response) {
           if (response.data.error) alert(response.data.error);
 
           _this2.getBusinessmans();
@@ -2076,7 +2076,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.post('/testes/businessman-record/public/api/businessman', _this.businessman).then(function (response) {
+                return _this.axios.post('/api/businessman', _this.businessman).then(function (response) {
                   _this.$router.push({
                     name: "list"
                   });
@@ -2248,7 +2248,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get("/testes/businessman-record/public/api/businessman/".concat(_this.$route.params.id)).then(function (response) {
+                return _this.axios.get("/api/businessman/".concat(_this.$route.params.id)).then(function (response) {
                   _this.businessman = response.data;
                   _this.listRede = _this.printListRede(_this.businessman);
                 })["catch"](function (error) {

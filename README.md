@@ -1,4 +1,4 @@
-# TEESTE DA PONTEON - CADASTRO DE EMPRESÁRIOS
+# TESTE DA PONTEON - CADASTRO DE EMPRESÁRIOS
 
 Projeto de um pequeno sistema de controle de estacionamento.
 
@@ -11,7 +11,6 @@ Projeto de um pequeno sistema de controle de estacionamento.
     - vue-axios 3.2.4
     - vue-moment 4.1.0
     - vue-resource 1.5.2
-    - vue-route 1.5.1
     - vue-router 3.5.1
 
 ## 2. Instalação
@@ -27,3 +26,19 @@ Utilize o comando no Artisan:
 Utilize os comandos no Artisan:
 
 	- php artisan db:seed
+
+## 3. Observações
+
+### 3.1 alteração de arquivos
+
+No arquivo resource/js/app.js altere o valor da base das rotas para o seu host
+
+    const router = new VueRouter({
+        mode: 'history',
+        base: '<HOST>',
+        routes: routes
+    });
+
+Nos arquivos de views no diretorio resource/js/views/businessmans altere a rota dos links da API de acordo com o seu host
+    
+        await this.axios.post('<host>/api/businessman',this.businessman).then(response=>{ ...

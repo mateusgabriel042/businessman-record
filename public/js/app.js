@@ -2383,7 +2383,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: '/register',
+  path: '/registrar',
   name: 'register',
   component: _views_businessmans_Register_vue__WEBPACK_IMPORTED_MODULE_0__.default
 }, {

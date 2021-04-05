@@ -40,7 +40,7 @@
 	    },
 	    methods:{
 	        async getBusinessmans(){
-	            await this.axios.get('/testes/businessman-record/public/api/businessman').then(response=>{
+	            await this.axios.get('/api/businessman').then(response=>{
 	                this.businessmans = response.data
 	                this.businessmans.forEach(function(item) {
 						item.registered_in = moment(item.registered_in).format('DD/MM/YYYY hh:mm:ss');
@@ -55,7 +55,7 @@
 
 	        deleteBusinessmans(id){
 	            if(confirm("Tem certeza que deseja excluir o registro?")){
-	                this.axios.delete(`/testes/businessman-record/public/api/businessman/${id}`).then(response=>{
+	                this.axios.delete(`/api/businessman/${id}`).then(response=>{
 	                	if(response.data.error)
 	                    	alert(response.data.error);
 	                    

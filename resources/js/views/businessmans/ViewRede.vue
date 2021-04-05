@@ -20,7 +20,7 @@
 	    },
 	    methods:{
 	        async showBusinessman(){
-	            await this.axios.get(`/testes/businessman-record/public/api/businessman/${this.$route.params.id}`).then(response=>{
+	            await this.axios.get(`/api/businessman/${this.$route.params.id}`).then(response=>{
 	                this.businessman = response.data
 
 	                this.listRede = this.printListRede(this.businessman)

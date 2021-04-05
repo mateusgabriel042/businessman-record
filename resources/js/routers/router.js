@@ -4,7 +4,7 @@ import ViewRede from '../views/businessmans/ViewRede.vue';
 
 const routes = [
 	{
-		path:'/register',
+		path:'/registrar',
 		name:'register',
 		component: Register
 	},

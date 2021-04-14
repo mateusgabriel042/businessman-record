@@ -50,9 +50,29 @@ class BusinessmansController extends Controller {
         //retornan em JSON a redo do empresario
         return response()->json($businessman);
     }
+    
+    public function edit($id) {
+        //selecao da rede do empresario
+        try{
+            $businessman = Businessman::findOrFail($id);
+        }catch(ModelNotFoundException $e){
+            return response()->json(['error' => 'Empresário não encontrado!'], 404);
+        }
 
-    public function update(Request $request, Businessman $businessman) {
-        //no teste não pedia atualização de registro
+        return response()->json($businessman);
+    }
+
+    public function update(BusinessmanRequest $request, $id) {
+        
+        //atualiza o horario local para o horario de São Paulo
+        date_default_timezone_set('America/Sao_Paulo');
+
+        try{
+            $businesmanSelected = Businessman::findOrFail($id)->update($request->all());
+            return response()->json(['message' => 'Empresário atualizado com sucesso!']);
+        }catch(ModelNotFoundException $e){
+            return response()->json(['error' => 'Empresário não encontrado']);
+        }
     }
 
     public function destroy($id) {

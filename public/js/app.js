@@ -1873,6 +1873,242 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/Edit.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/Edit.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      businessman: [],
+      states: [],
+      cities: [],
+      business_dad: [],
+      allerrors: []
+    };
+  },
+  mounted: function mounted() {
+    this.getBusinessman();
+    this.getStates();
+    this.getBusinessDad();
+  },
+  methods: {
+    getBusinessman: function getBusinessman() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.axios.get("/testes/businessman-record/public/api/businessman/".concat(_this.$route.params.id), _this.businessman).then(function (response) {
+                  _this.businessman = response.data;
+                })["catch"](function (error) {
+                  _this.allerrors = error.response.data.errors;
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    updateBusinessman: function updateBusinessman() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.axios.put("/testes/businessman-record/public/api/businessman/".concat(_this2.$route.params.id), _this2.businessman).then(function (response) {
+                  _this2.$router.push({
+                    name: "list"
+                  });
+                })["catch"](function (error) {
+                  _this2.allerrors = error.response.data.errors;
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    getStates: function getStates() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(function (response) {
+                  _this3.states = response.data.sort(function (a, b) {
+                    return a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0;
+                  });
+                  console.log();
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this3.states = [];
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    changeState: function changeState(event) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _this4.businessman.id_state = event.target.value;
+                _this4.businessman.state = _this4.states.find(function (element) {
+                  return element.id == event.target.value;
+                }).nome;
+                _this4.businessman.uf_state = _this4.states.find(function (element) {
+                  return element.id == event.target.value;
+                }).sigla;
+                _context4.next = 5;
+                return _this4.axios.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados/".concat(event.target.value, "/municipios")).then(function (response) {
+                  _this4.cities = response.data.sort(function (a, b) {
+                    return a.nome > b.nome ? 1 : b.nome > a.nome ? -1 : 0;
+                  });
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this4.cities = [];
+                });
+
+              case 5:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    changeCity: function changeCity(event) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _this5.businessman.id_city = event.target.value;
+                _this5.businessman.city = _this5.cities.find(function (element) {
+                  return element.id == event.target.value;
+                }).nome;
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    getBusinessDad: function getBusinessDad() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return _this6.axios.get('/testes/businessman-record/public/api/businessman').then(function (response) {
+                  _this6.business_dad = response.data;
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this6.business_dad = [];
+                });
+
+              case 2:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/List.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/List.vue?vue&type=script&lang=js& ***!
@@ -1894,6 +2130,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -2379,6 +2617,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_businessmans_Register_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/businessmans/Register.vue */ "./resources/js/views/businessmans/Register.vue");
 /* harmony import */ var _views_businessmans_List_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/businessmans/List.vue */ "./resources/js/views/businessmans/List.vue");
 /* harmony import */ var _views_businessmans_ViewRede_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/businessmans/ViewRede.vue */ "./resources/js/views/businessmans/ViewRede.vue");
+/* harmony import */ var _views_businessmans_Edit_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/businessmans/Edit.vue */ "./resources/js/views/businessmans/Edit.vue");
+
 
 
 
@@ -2390,6 +2630,10 @@ var routes = [{
   path: '/listar',
   name: 'list',
   component: _views_businessmans_List_vue__WEBPACK_IMPORTED_MODULE_1__.default
+}, {
+  path: '/edit/:id',
+  name: 'edit',
+  component: _views_businessmans_Edit_vue__WEBPACK_IMPORTED_MODULE_3__.default
 }, {
   path: '/rede/:id',
   name: 'viewRede',
@@ -42586,6 +42830,45 @@ component.options.__file = "resources/js/views/App.vue"
 
 /***/ }),
 
+/***/ "./resources/js/views/businessmans/Edit.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/views/businessmans/Edit.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Edit_vue_vue_type_template_id_6122451e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=6122451e& */ "./resources/js/views/businessmans/Edit.vue?vue&type=template&id=6122451e&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/views/businessmans/Edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Edit_vue_vue_type_template_id_6122451e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Edit_vue_vue_type_template_id_6122451e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/businessmans/Edit.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/businessmans/List.vue":
 /*!**************************************************!*\
   !*** ./resources/js/views/businessmans/List.vue ***!
@@ -42719,6 +43002,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/businessmans/Edit.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/views/businessmans/Edit.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/Edit.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/views/businessmans/List.vue?vue&type=script&lang=js&":
 /*!***************************************************************************!*\
   !*** ./resources/js/views/businessmans/List.vue?vue&type=script&lang=js& ***!
@@ -42780,6 +43079,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_91ac6b5c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_91ac6b5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./App.vue?vue&type=template&id=91ac6b5c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/App.vue?vue&type=template&id=91ac6b5c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/businessmans/Edit.vue?vue&type=template&id=6122451e&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/views/businessmans/Edit.vue?vue&type=template&id=6122451e& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6122451e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6122451e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6122451e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=template&id=6122451e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/Edit.vue?vue&type=template&id=6122451e&");
 
 
 /***/ }),
@@ -42885,6 +43201,256 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/Edit.vue?vue&type=template&id=6122451e&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/Edit.vue?vue&type=template&id=6122451e& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("label", [_vm._v("Formulário de edição dos empresários")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateBusinessman($event)
+          }
+        }
+      },
+      [
+        _c("div", [
+          _c("label", [
+            _vm._v("Nome completo: "),
+            _vm.allerrors.full_name
+              ? _c("span", [_vm._v(_vm._s(_vm.allerrors.full_name[0]))])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.businessman.full_name,
+                expression: "businessman.full_name"
+              }
+            ],
+            attrs: { type: "text", name: "full_name" },
+            domProps: { value: _vm.businessman.full_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.businessman, "full_name", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("label", [
+            _vm._v("Celular: "),
+            _vm.allerrors.cell_phone
+              ? _c("span", [_vm._v(_vm._s(_vm.allerrors.cell_phone[0]))])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "mask",
+                rawName: "v-mask",
+                value: "(##) #####-####",
+                expression: "'(##) #####-####'"
+              },
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.businessman.cell_phone,
+                expression: "businessman.cell_phone"
+              }
+            ],
+            attrs: { type: "text", name: "cell_phone" },
+            domProps: { value: _vm.businessman.cell_phone },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.businessman, "cell_phone", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("label", [
+            _vm._v("Estado: "),
+            _vm.allerrors.uf_state
+              ? _c("span", [_vm._v(_vm._s(_vm.allerrors.uf_state[0]))])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              attrs: { name: "state" },
+              on: {
+                change: function($event) {
+                  return _vm.changeState($event)
+                }
+              }
+            },
+            _vm._l(_vm.states, function(item) {
+              return _c(
+                "option",
+                { key: item.id, domProps: { value: item.id } },
+                [_vm._v(_vm._s(item.nome))]
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("label", [
+            _vm._v("Cidade: "),
+            _vm.allerrors.city
+              ? _c("span", [_vm._v(_vm._s(_vm.allerrors.city[0]))])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.businessman.id_city,
+                  expression: "businessman.id_city"
+                }
+              ],
+              attrs: { name: "city" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.businessman,
+                      "id_city",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  function($event) {
+                    return _vm.changeCity($event)
+                  }
+                ]
+              }
+            },
+            _vm._l(_vm.cities, function(item) {
+              return _c(
+                "option",
+                { key: item.id, domProps: { value: item.id } },
+                [_vm._v(_vm._s(item.nome))]
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("label", [_vm._v("Pai empresarial:")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.businessman.id_business_dad,
+                  expression: "businessman.id_business_dad"
+                }
+              ],
+              attrs: { name: "id_business_dad" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.businessman,
+                    "id_business_dad",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { selected: "selected" } }, [
+                _vm._v("Selecionar")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.business_dad, function(item) {
+                return _c(
+                  "option",
+                  { key: item.id, domProps: { value: item.id } },
+                  [_vm._v(_vm._s(item.full_name))]
+                )
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("input", { attrs: { type: "submit", value: "Salvar empresário" } })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/List.vue?vue&type=template&id=7fb293f6&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/businessmans/List.vue?vue&type=template&id=7fb293f6& ***!
@@ -42951,7 +43517,19 @@ var render = function() {
                 },
                 [_vm._v("Excluir")]
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "td",
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: { name: "edit", params: { id: item.id } } } },
+                  [_c("i", { staticClass: "fa" }, [_vm._v("")])]
+                )
+              ],
+              1
+            )
           ])
         }),
         0
@@ -42976,6 +43554,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("Pai empresarial")]),
       _vm._v(" "),
       _c("th", [_vm._v("Rede")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("-")]),
       _vm._v(" "),
       _c("th", [_vm._v("-")])
     ])

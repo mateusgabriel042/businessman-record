@@ -10,6 +10,7 @@
 				<th>Pai empresarial</th>
 				<th>Rede</th>
 				<th>-</th>
+				<th>-</th>
 			</thead>
 			<tbody>
 				<tr v-for="item in businessmans" :key="item.id">
@@ -21,6 +22,7 @@
 					<td v-else="hasBusinessDad(item)">-</td>
 					<td><router-link :to="{name:'viewRede', params:{id:item.id}}">Ver rede</router-link></td>
 					<td><button type="button" @click="deleteBusinessmans(item.id)" class="delete">Excluir</button></td>
+					<td><router-link :to="{name:'edit', params:{id:item.id}}"><i class="fa">&#xf040;</i></router-link></td>
 				</tr>
 			</tbody>
 		</table>

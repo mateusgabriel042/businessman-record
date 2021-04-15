@@ -63,7 +63,7 @@
 
 		methods: {
 			async getBusinessman(){
-		        await this.axios.get(`/testes/businessman-record/public/api/businessman/${this.$route.params.id}`,this.businessman).then(response=>{
+		        await this.axios.get(`/api/businessman/${this.$route.params.id}`,this.businessman).then(response=>{
 		        	this.businessman = response.data;
 		        }).catch(error=>{
 		        	this.allerrors = error.response.data.errors;
@@ -71,7 +71,7 @@
 		    },
 
 			async updateBusinessman(){
-		        await this.axios.put(`/testes/businessman-record/public/api/businessman/${this.$route.params.id}`,this.businessman).then(response=>{
+		        await this.axios.put(`/api/businessman/${this.$route.params.id}`,this.businessman).then(response=>{
 		        	this.$router.push({name:"list"})
 		        }).catch(error=>{
 		        	this.allerrors = error.response.data.errors;

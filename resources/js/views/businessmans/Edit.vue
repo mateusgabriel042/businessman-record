@@ -15,6 +15,7 @@
 			<div>
 				<label>Estado: <span v-if="allerrors.uf_state">{{allerrors.uf_state[0]}}</span></label>
 				<select name="state" @change="changeState($event)">
+					<option :value="businessman.id_state" selected="selected">{{businessman.state}}</option>
 					<option v-for="item in states" :key="item.id" :value="item.id">{{item.nome}}</option>
 				</select>
 			</div>
@@ -22,6 +23,7 @@
 			<div>
 				<label>Cidade: <span v-if="allerrors.city">{{allerrors.city[0]}}</span></label>
 				<select name="city" @change="changeCity($event)" v-model="businessman.id_city">
+					<option :value="businessman.id_city" selected="selected">{{businessman.city}}</option>
 					<option v-for="item in cities" :key="item.id" :value="item.id">{{item.nome}}</option>
 				</select>
 			</div>

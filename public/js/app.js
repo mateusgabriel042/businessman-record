@@ -1935,6 +1935,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -43315,14 +43317,25 @@ var render = function() {
                 }
               }
             },
-            _vm._l(_vm.states, function(item) {
-              return _c(
+            [
+              _c(
                 "option",
-                { key: item.id, domProps: { value: item.id } },
-                [_vm._v(_vm._s(item.nome))]
-              )
-            }),
-            0
+                {
+                  attrs: { selected: "selected" },
+                  domProps: { value: _vm.businessman.id_state }
+                },
+                [_vm._v(_vm._s(_vm.businessman.state))]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.states, function(item) {
+                return _c(
+                  "option",
+                  { key: item.id, domProps: { value: item.id } },
+                  [_vm._v(_vm._s(item.nome))]
+                )
+              })
+            ],
+            2
           )
         ]),
         _vm._v(" "),
@@ -43369,14 +43382,25 @@ var render = function() {
                 ]
               }
             },
-            _vm._l(_vm.cities, function(item) {
-              return _c(
+            [
+              _c(
                 "option",
-                { key: item.id, domProps: { value: item.id } },
-                [_vm._v(_vm._s(item.nome))]
-              )
-            }),
-            0
+                {
+                  attrs: { selected: "selected" },
+                  domProps: { value: _vm.businessman.id_city }
+                },
+                [_vm._v(_vm._s(_vm.businessman.city))]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.cities, function(item) {
+                return _c(
+                  "option",
+                  { key: item.id, domProps: { value: item.id } },
+                  [_vm._v(_vm._s(item.nome))]
+                )
+              })
+            ],
+            2
           )
         ]),
         _vm._v(" "),

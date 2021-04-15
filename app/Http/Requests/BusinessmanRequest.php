@@ -12,7 +12,7 @@ class BusinessmanRequest extends FormRequest{
     public function rules(){
         return [
             'full_name'     => 'required|min:9|max:200',
-            'cell_phone'    => 'required|min:14|max:15|unique:businessmans',
+            'cell_phone'    => 'required|min:14|max:15|unique:businessmans,cell_phone,'.$this->id,
             'uf_state'      => 'required|min:2|max:2',
             'city'          => 'required|min:3|max:50'
         ];
